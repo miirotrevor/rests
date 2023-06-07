@@ -1,0 +1,47 @@
+menu = {
+    'Burger': 10.99,
+    'Pizza': 12.99,
+    'Pasta': 8.99,
+    'Salad': 6.99,
+    'Ice Cream': 4.99
+}
+
+def display_menu():
+    print("Menu:")
+    for item, price in menu.items():
+        print(f"{item}: ${price}")
+
+def place_order():
+    order = []
+    while True:
+        item = input("Enter an item to order (or 'q' to quit): ")
+        if item.lower() == 'q':
+            break
+        if item not in menu:
+            print("Item not found in the menu. Please try again.")
+            continue
+        order.append(item)
+
+    return order
+
+def calculate_total(order):
+    total = 0
+    for item in order:
+        total += menu[item]
+    return total
+
+def main():
+    print("Welcome to the Restaurant!")
+    display_menu()
+    print("\nPlease place your order:")
+    order = place_order()
+
+    print("\nOrder Summary:")
+    for item in order:
+        print(item)
+
+    total = calculate_total(order)
+    print(f"\nTotal amount to pay: ${total}")
+
+if __name__ == '__main__':
+    main()
